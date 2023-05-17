@@ -6,15 +6,27 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public interface CloudGetter {
+public abstract class CloudGetter<T extends CloudPlayer> {
 
     @Nullable
-    CloudPlayer getPlayerByUUID(@NotNull UUID uuid);
+    public T getPlayerByUUID(@NotNull UUID uuid) {
+        return this.getAllPlayers()
+                .stream()
+                .filter(player -> player.getUUID().equals(uuid))
+                .findFirst()
+                .orElse(null);
+    }
 
     @Nullable
-    CloudPlayer getPlayerByName(@NotNull String name);
+    public T getPlayerByName(@NotNull String name) {
+        return this.getAllPlayers()
+                .stream()
+                .filter(player -> player.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
 
     @NotNull
-    List<CloudPlayer> getAllPlayers();
+    public abstract List<T> getAllPlayers();
 
 }
