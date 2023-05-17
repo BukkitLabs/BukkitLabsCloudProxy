@@ -1,5 +1,5 @@
 name: BukkitLabsCloudProxy
 version: '${project.version}'
-main: net.bukkitlabs.bukkitlabscloud.BukkitLabsCloudProxy
+main: net.bukkitlabs.bukkitlabscloud.bungee.BukkitLabsCloudProxyBungee
 author: Asedem, Finn
 description: The Proxy Plugin for the BukkitLabsCloud

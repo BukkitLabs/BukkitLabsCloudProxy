@@ -1,8 +1,8 @@
-package net.bukkitlabs.bukkitlabscloud;
+package net.bukkitlabs.bukkitlabscloud.bungee;
 
 import net.md_5.bungee.api.plugin.Plugin;
 
-public final class BukkitLabsCloudProxy extends Plugin {
+public final class BukkitLabsCloudProxyBungee extends Plugin {
 
     @Override
     public void onEnable() {

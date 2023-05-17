@@ -1,0 +1,13 @@
+{
+  "id": "bukkitlabscloudproxy",
+  "name": "BukkitLabsCloudProxy",
+  "version": "1.0.0",
+  "description": "The Proxy Plugin for the BukkitLabsCloud",
+  "url": "bukkitlabs.net",
+  "authors": [
+    "Asedem",
+    "Finn"
+  ],
+  "dependencies": [],
+  "main": "net.bukkitlabs.bukkitlabscloud.velocity.BukkitLabsCloudProxyVelocity"
+}
