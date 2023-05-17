@@ -11,6 +11,7 @@ public class CloudPlayerBungee extends CloudSourceBungee implements CloudPlayer 
     private final ProxiedPlayer player;
 
     public CloudPlayerBungee(@NotNull ProxiedPlayer player) {
+        super(player);
         this.player = player;
     }
 
