@@ -3,6 +3,7 @@ package net.bukkitlabs.bukkitlabscloud.core.share;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.List;
 import java.util.UUID;
@@ -52,4 +53,9 @@ public abstract class Proxy<T extends CloudPlayer, V extends CloudServer> {
     public abstract List<V> getAllServers();
 
     public abstract void addServer(@NotNull V server);
+
+    public abstract void removeServer(@NotNull V server);
+
+    @NotNull
+    public abstract V constructServer(@NotNull String name, @NotNull InetSocketAddress address);
 }

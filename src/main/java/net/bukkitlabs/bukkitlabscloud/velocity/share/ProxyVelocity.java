@@ -1,10 +1,12 @@
 package net.bukkitlabs.bukkitlabscloud.velocity.share;
 
 import com.velocitypowered.api.proxy.server.RegisteredServer;
+import com.velocitypowered.api.proxy.server.ServerInfo;
 import net.bukkitlabs.bukkitlabscloud.core.share.Proxy;
 import net.bukkitlabs.bukkitlabscloud.velocity.BukkitLabsCloudProxyVelocity;
 import org.jetbrains.annotations.NotNull;
 
+import java.net.InetSocketAddress;
 import java.util.List;
 
 public class ProxyVelocity extends Proxy<CloudPlayerVelocity, CloudServerVelocity> {
@@ -35,5 +37,17 @@ public class ProxyVelocity extends Proxy<CloudPlayerVelocity, CloudServerVelocit
         BukkitLabsCloudProxyVelocity.getInstance()
                 .getServer()
                 .registerServer(server.getServerInfo());
+    }
+
+    @Override
+    public void removeServer(@NotNull CloudServerVelocity server) {
+        BukkitLabsCloudProxyVelocity.getInstance()
+                .getServer()
+                .unregisterServer(server.getServerInfo());
+    }
+
+    @Override
+    public @NotNull CloudServerVelocity constructServer(@NotNull String name, @NotNull InetSocketAddress address) {
+        return new CloudServerVelocity(new ServerInfo(name, address));
     }
 }

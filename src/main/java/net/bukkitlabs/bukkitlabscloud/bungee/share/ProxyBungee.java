@@ -4,6 +4,7 @@ import net.bukkitlabs.bukkitlabscloud.bungee.BukkitLabsCloudProxyBungee;
 import net.bukkitlabs.bukkitlabscloud.core.share.Proxy;
 import org.jetbrains.annotations.NotNull;
 
+import java.net.InetSocketAddress;
 import java.util.List;
 
 public class ProxyBungee extends Proxy<CloudPlayerBungee, CloudServerBungee> {
@@ -35,5 +36,20 @@ public class ProxyBungee extends Proxy<CloudPlayerBungee, CloudServerBungee> {
                 .getProxy()
                 .getServers()
                 .put(server.getName(), server.getServerInfo());
+    }
+
+    @Override
+    public void removeServer(@NotNull CloudServerBungee server) {
+        BukkitLabsCloudProxyBungee.getInstance()
+                .getProxy()
+                .getServers()
+                .remove(server.getName());
+    }
+
+    @Override
+    public @NotNull CloudServerBungee constructServer(@NotNull String name, @NotNull InetSocketAddress address) {
+        return new CloudServerBungee(BukkitLabsCloudProxyBungee.getInstance()
+                .getProxy()
+                .constructServerInfo(name, address, "", false));
     }
 }
