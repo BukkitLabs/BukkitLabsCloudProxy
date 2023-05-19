@@ -7,7 +7,7 @@ import java.net.SocketAddress;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class CloudGetter<T extends CloudPlayer, V extends CloudServer> {
+public abstract class Proxy<T extends CloudPlayer, V extends CloudServer> {
 
     @Nullable
     public T getPlayerByUUID(@NotNull UUID uuid) {
@@ -50,4 +50,6 @@ public abstract class CloudGetter<T extends CloudPlayer, V extends CloudServer> 
 
     @NotNull
     public abstract List<V> getAllServers();
+
+    public abstract void addServer(@NotNull V server);
 }

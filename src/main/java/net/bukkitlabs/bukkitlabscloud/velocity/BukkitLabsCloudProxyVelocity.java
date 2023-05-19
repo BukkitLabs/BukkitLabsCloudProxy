@@ -7,7 +7,6 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import net.bukkitlabs.bukkitlabscloud.velocity.share.CloudGetterVelocity;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 

@@ -23,4 +23,9 @@ public class CloudServerVelocity implements CloudServer {
     public @NotNull InetSocketAddress getAddress() {
         return serverInfo.getAddress();
     }
+
+    @NotNull
+    public ServerInfo getServerInfo() {
+        return serverInfo;
+    }
 }

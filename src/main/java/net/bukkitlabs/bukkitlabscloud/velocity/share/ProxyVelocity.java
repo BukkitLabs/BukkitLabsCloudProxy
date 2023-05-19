@@ -1,13 +1,13 @@
 package net.bukkitlabs.bukkitlabscloud.velocity.share;
 
 import com.velocitypowered.api.proxy.server.RegisteredServer;
-import net.bukkitlabs.bukkitlabscloud.core.share.CloudGetter;
+import net.bukkitlabs.bukkitlabscloud.core.share.Proxy;
 import net.bukkitlabs.bukkitlabscloud.velocity.BukkitLabsCloudProxyVelocity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class CloudGetterVelocity extends CloudGetter<CloudPlayerVelocity, CloudServerVelocity> {
+public class ProxyVelocity extends Proxy<CloudPlayerVelocity, CloudServerVelocity> {
 
     @Override
     public @NotNull List<CloudPlayerVelocity> getAllPlayers() {
@@ -28,5 +28,12 @@ public class CloudGetterVelocity extends CloudGetter<CloudPlayerVelocity, CloudS
                 .map(RegisteredServer::getServerInfo)
                 .map(CloudServerVelocity::new)
                 .toList();
+    }
+
+    @Override
+    public void addServer(@NotNull CloudServerVelocity server) {
+        BukkitLabsCloudProxyVelocity.getInstance()
+                .getServer()
+                .registerServer(server.getServerInfo());
     }
 }

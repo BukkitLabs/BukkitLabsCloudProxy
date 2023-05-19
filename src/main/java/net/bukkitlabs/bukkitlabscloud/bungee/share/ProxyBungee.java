@@ -1,12 +1,12 @@
 package net.bukkitlabs.bukkitlabscloud.bungee.share;
 
 import net.bukkitlabs.bukkitlabscloud.bungee.BukkitLabsCloudProxyBungee;
-import net.bukkitlabs.bukkitlabscloud.core.share.CloudGetter;
+import net.bukkitlabs.bukkitlabscloud.core.share.Proxy;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class CloudGetterBungee extends CloudGetter<CloudPlayerBungee, CloudServerBungee> {
+public class ProxyBungee extends Proxy<CloudPlayerBungee, CloudServerBungee> {
 
     @Override
     public @NotNull List<CloudPlayerBungee> getAllPlayers() {
@@ -27,5 +27,13 @@ public class CloudGetterBungee extends CloudGetter<CloudPlayerBungee, CloudServe
                 .stream()
                 .map(CloudServerBungee::new)
                 .toList();
+    }
+
+    @Override
+    public void addServer(@NotNull CloudServerBungee server) {
+        BukkitLabsCloudProxyBungee.getInstance()
+                .getProxy()
+                .getServers()
+                .put(server.getName(), server.getServerInfo());
     }
 }
