@@ -1,19 +1,30 @@
 package net.bukkitlabs.bukkitlabscloud.bungee.share;
 
 import net.bukkitlabs.bukkitlabscloud.core.share.CloudServer;
-import net.md_5.bungee.api.connection.Server;
+import net.md_5.bungee.api.config.ServerInfo;
 import org.jetbrains.annotations.NotNull;
 
-public class CloudServerBungee implements CloudServer<CloudServerInfoBungee> {
+import java.net.SocketAddress;
 
-    private final Server server;
+public class CloudServerBungee implements CloudServer {
 
-    public CloudServerBungee(@NotNull Server server) {
-        this.server = server;
+    private final ServerInfo serverInfo;
+
+    public CloudServerBungee(@NotNull ServerInfo serverInfo) {
+        this.serverInfo = serverInfo;
     }
 
     @Override
-    public @NotNull CloudServerInfoBungee getServerInfo() {
-        return new CloudServerInfoBungee(server.getInfo());
+    public @NotNull String getName() {
+        return serverInfo.getName();
+    }
+
+    @Override
+    public @NotNull SocketAddress getAddress() {
+        return serverInfo.getSocketAddress();
+    }
+
+    public ServerInfo getServerInfo() {
+        return serverInfo;
     }
 }

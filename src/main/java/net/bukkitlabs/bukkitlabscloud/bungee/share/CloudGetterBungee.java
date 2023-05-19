@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class CloudGetterBungee extends CloudGetter<CloudPlayerBungee> {
+public class CloudGetterBungee extends CloudGetter<CloudPlayerBungee, CloudServerBungee> {
 
     @Override
     public @NotNull List<CloudPlayerBungee> getAllPlayers() {
@@ -15,6 +15,17 @@ public class CloudGetterBungee extends CloudGetter<CloudPlayerBungee> {
                 .getPlayers()
                 .stream()
                 .map(CloudPlayerBungee::new)
+                .toList();
+    }
+
+    @Override
+    public @NotNull List<CloudServerBungee> getAllServers() {
+        return BukkitLabsCloudProxyBungee.getInstance()
+                .getProxy()
+                .getServers()
+                .values()
+                .stream()
+                .map(CloudServerBungee::new)
                 .toList();
     }
 }

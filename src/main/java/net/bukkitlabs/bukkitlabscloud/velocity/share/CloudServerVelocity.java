@@ -1,19 +1,26 @@
 package net.bukkitlabs.bukkitlabscloud.velocity.share;
 
-import com.velocitypowered.api.proxy.server.RegisteredServer;
+import com.velocitypowered.api.proxy.server.ServerInfo;
 import net.bukkitlabs.bukkitlabscloud.core.share.CloudServer;
 import org.jetbrains.annotations.NotNull;
 
-public class CloudServerVelocity implements CloudServer<CloudServerInfoVelocity> {
+import java.net.InetSocketAddress;
 
-    private final RegisteredServer server;
+public class CloudServerVelocity implements CloudServer {
 
-    public CloudServerVelocity(@NotNull RegisteredServer server) {
-        this.server = server;
+    private final ServerInfo serverInfo;
+
+    public CloudServerVelocity(@NotNull ServerInfo serverInfo) {
+        this.serverInfo = serverInfo;
     }
 
     @Override
-    public @NotNull CloudServerInfoVelocity getServerInfo() {
-        return new CloudServerInfoVelocity(server.getServerInfo());
+    public @NotNull String getName() {
+        return serverInfo.getName();
+    }
+
+    @Override
+    public @NotNull InetSocketAddress getAddress() {
+        return serverInfo.getAddress();
     }
 }

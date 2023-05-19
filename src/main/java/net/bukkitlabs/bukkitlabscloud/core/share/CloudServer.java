@@ -2,7 +2,13 @@ package net.bukkitlabs.bukkitlabscloud.core.share;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface CloudServer<T extends CloudServerInfo> {
+import java.net.SocketAddress;
 
-    @NotNull T getServerInfo();
+public interface CloudServer {
+
+    @NotNull
+    String getName();
+
+    @NotNull
+    SocketAddress getAddress();
 }
