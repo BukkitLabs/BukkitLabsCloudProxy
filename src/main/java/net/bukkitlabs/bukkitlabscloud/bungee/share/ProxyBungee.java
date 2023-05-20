@@ -58,7 +58,7 @@ public class ProxyBungee implements Proxy<CloudPlayerBungee, CloudServerBungee> 
     }
 
     @Override
-    public @NotNull CloudCommand registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases) {
-        return new CloudCommandBungee(cloudCommand, name, permission, aliases).getCloudCommand();
+    public void registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases) {
+        new CloudCommandBungee(cloudCommand, name, permission, aliases);
     }
 }

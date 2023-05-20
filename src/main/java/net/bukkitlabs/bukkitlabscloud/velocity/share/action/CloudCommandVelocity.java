@@ -1,8 +1,10 @@
 package net.bukkitlabs.bukkitlabscloud.velocity.share.action;
 
 import com.velocitypowered.api.command.SimpleCommand;
+import com.velocitypowered.api.proxy.Player;
 import net.bukkitlabs.bukkitlabscloud.core.share.action.CloudCommand;
 import net.bukkitlabs.bukkitlabscloud.velocity.BukkitLabsCloudProxyVelocity;
+import net.bukkitlabs.bukkitlabscloud.velocity.share.object.CloudPlayerVelocity;
 import net.bukkitlabs.bukkitlabscloud.velocity.share.object.CloudSourceVelocity;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,7 +34,9 @@ public class CloudCommandVelocity implements SimpleCommand {
     @Override
     public void execute(Invocation invocation) {
         cloudCommand.onCommand(
-                new CloudSourceVelocity(invocation.source()),
+                invocation.source() instanceof Player player ?
+                        new CloudPlayerVelocity(player) :
+                        new CloudSourceVelocity(invocation.source()),
                 this.name,
                 this.permission,
                 invocation.arguments()
@@ -42,15 +46,12 @@ public class CloudCommandVelocity implements SimpleCommand {
     @Override
     public List<String> suggest(Invocation invocation) {
         return cloudCommand.onTab(
-                new CloudSourceVelocity(invocation.source()),
+                invocation.source() instanceof Player player ?
+                        new CloudPlayerVelocity(player) :
+                        new CloudSourceVelocity(invocation.source()),
                 this.name,
                 this.permission,
                 invocation.arguments()
         );
-    }
-
-    @NotNull
-    public CloudCommand getCloudCommand() {
-        return cloudCommand;
     }
 }

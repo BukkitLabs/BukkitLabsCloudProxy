@@ -1,9 +1,11 @@
 package net.bukkitlabs.bukkitlabscloud.bungee.share.action;
 
 import net.bukkitlabs.bukkitlabscloud.bungee.BukkitLabsCloudProxyBungee;
+import net.bukkitlabs.bukkitlabscloud.bungee.share.object.CloudPlayerBungee;
 import net.bukkitlabs.bukkitlabscloud.bungee.share.object.CloudSourceBungee;
 import net.bukkitlabs.bukkitlabscloud.core.share.action.CloudCommand;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +30,9 @@ public class CloudCommandBungee extends Command implements TabExecutor {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
         cloudCommand.onCommand(
-                new CloudSourceBungee(commandSender),
+                commandSender instanceof ProxiedPlayer player ?
+                        new CloudPlayerBungee(player) :
+                        new CloudSourceBungee(commandSender),
                 this.name,
                 this.permission,
                 strings
@@ -38,15 +42,12 @@ public class CloudCommandBungee extends Command implements TabExecutor {
     @Override
     public Iterable<String> onTabComplete(CommandSender commandSender, String[] strings) {
         return cloudCommand.onTab(
-                new CloudSourceBungee(commandSender),
+                commandSender instanceof ProxiedPlayer player ?
+                        new CloudPlayerBungee(player) :
+                        new CloudSourceBungee(commandSender),
                 this.name,
                 this.permission,
                 strings
         );
-    }
-
-    @NotNull
-    public CloudCommand getCloudCommand() {
-        return cloudCommand;
     }
 }

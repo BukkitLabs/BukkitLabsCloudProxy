@@ -7,6 +7,8 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
+import net.bukkitlabs.bukkitlabscloud.core.BukkitLabsCloudProxyCore;
+import net.bukkitlabs.bukkitlabscloud.velocity.share.ProxyVelocity;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -26,6 +28,7 @@ public class BukkitLabsCloudProxyVelocity {
     private final ProxyServer server;
     private final Logger logger;
     private final Path dataDirectory;
+    private BukkitLabsCloudProxyCore bukkitLabsCloudProxyCore;
 
     @Inject
     public BukkitLabsCloudProxyVelocity(ProxyServer server, Logger logger, @DataDirectory Path dataDirectory) {
@@ -37,11 +40,13 @@ public class BukkitLabsCloudProxyVelocity {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         setInstance(this);
+        this.bukkitLabsCloudProxyCore = new BukkitLabsCloudProxyCore(new ProxyVelocity());
+        this.bukkitLabsCloudProxyCore.onEnable();
     }
 
     @Subscribe
     public void onProxyShutdown(ProxyShutdownEvent event) {
-
+        this.bukkitLabsCloudProxyCore.onDisable();
     }
 
     @NotNull

@@ -56,7 +56,7 @@ public class ProxyVelocity implements Proxy<CloudPlayerVelocity, CloudServerVelo
     }
 
     @Override
-    public @NotNull CloudCommand registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases) {
-        return new CloudCommandVelocity(cloudCommand, name, permission, aliases).getCloudCommand();
+    public void registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases) {
+        new CloudCommandVelocity(cloudCommand, name, permission, aliases);
     }
 }

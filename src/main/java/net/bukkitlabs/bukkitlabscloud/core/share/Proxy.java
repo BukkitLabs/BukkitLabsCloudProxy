@@ -62,6 +62,5 @@ public interface Proxy<T extends CloudPlayer, V extends CloudServer> {
     @NotNull
     V constructServer(@NotNull String name, @NotNull InetSocketAddress address);
 
-    @NotNull
-    CloudCommand registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases);
+    void registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases);
 }
