@@ -1,8 +1,8 @@
-package net.bukkitlabs.bukkitlabscloud.velocity.share;
+package net.bukkitlabs.bukkitlabscloud.velocity.share.object;
 
 import com.velocitypowered.api.command.CommandSource;
 import de.rytrox.impulse.color.ChatColor;
-import net.bukkitlabs.bukkitlabscloud.core.share.CloudSource;
+import net.bukkitlabs.bukkitlabscloud.core.share.object.CloudSource;
 import org.jetbrains.annotations.NotNull;
 
 public class CloudSourceVelocity implements CloudSource {
@@ -16,5 +16,10 @@ public class CloudSourceVelocity implements CloudSource {
     @Override
     public void sendMessage(@NotNull String message) {
         source.sendMessage(ChatColor.translate('&', message));
+    }
+
+    @Override
+    public boolean hasPermission(@NotNull String permission) {
+        return true;
     }
 }

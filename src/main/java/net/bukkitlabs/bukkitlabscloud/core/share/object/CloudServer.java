@@ -1,4 +1,4 @@
-package net.bukkitlabs.bukkitlabscloud.core.share;
+package net.bukkitlabs.bukkitlabscloud.core.share.object;
 
 import org.jetbrains.annotations.NotNull;
 

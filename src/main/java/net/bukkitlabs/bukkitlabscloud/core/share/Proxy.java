@@ -1,5 +1,8 @@
 package net.bukkitlabs.bukkitlabscloud.core.share;
 
+import net.bukkitlabs.bukkitlabscloud.core.share.action.CloudCommand;
+import net.bukkitlabs.bukkitlabscloud.core.share.object.CloudPlayer;
+import net.bukkitlabs.bukkitlabscloud.core.share.object.CloudServer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -8,10 +11,10 @@ import java.net.SocketAddress;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class Proxy<T extends CloudPlayer, V extends CloudServer> {
+public interface Proxy<T extends CloudPlayer, V extends CloudServer> {
 
     @Nullable
-    public T getPlayerByUUID(@NotNull UUID uuid) {
+    default T getPlayerByUUID(@NotNull UUID uuid) {
         return this.getAllPlayers()
                 .stream()
                 .filter(player -> player.getUUID().equals(uuid))
@@ -20,7 +23,7 @@ public abstract class Proxy<T extends CloudPlayer, V extends CloudServer> {
     }
 
     @Nullable
-    public T getPlayerByName(@NotNull String name) {
+    default T getPlayerByName(@NotNull String name) {
         return this.getAllPlayers()
                 .stream()
                 .filter(player -> player.getName().equals(name))
@@ -29,7 +32,7 @@ public abstract class Proxy<T extends CloudPlayer, V extends CloudServer> {
     }
 
     @Nullable
-    public V getServerByName(@NotNull String name) {
+    default V getServerByName(@NotNull String name) {
         return this.getAllServers()
                 .stream()
                 .filter(server -> server.getName().equals(name))
@@ -38,7 +41,7 @@ public abstract class Proxy<T extends CloudPlayer, V extends CloudServer> {
     }
 
     @Nullable
-    public V getServerByName(@NotNull SocketAddress address) {
+    default V getServerByName(@NotNull SocketAddress address) {
         return this.getAllServers()
                 .stream()
                 .filter(server -> server.getAddress().equals(address))
@@ -47,15 +50,18 @@ public abstract class Proxy<T extends CloudPlayer, V extends CloudServer> {
     }
 
     @NotNull
-    public abstract List<T> getAllPlayers();
+    List<T> getAllPlayers();
 
     @NotNull
-    public abstract List<V> getAllServers();
+    List<V> getAllServers();
 
-    public abstract void addServer(@NotNull V server);
+    void addServer(@NotNull V server);
 
-    public abstract void removeServer(@NotNull V server);
+    void removeServer(@NotNull V server);
 
     @NotNull
-    public abstract V constructServer(@NotNull String name, @NotNull InetSocketAddress address);
+    V constructServer(@NotNull String name, @NotNull InetSocketAddress address);
+
+    @NotNull
+    CloudCommand registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases);
 }

@@ -1,6 +1,6 @@
-package net.bukkitlabs.bukkitlabscloud.bungee.share;
+package net.bukkitlabs.bukkitlabscloud.bungee.share.object;
 
-import net.bukkitlabs.bukkitlabscloud.core.share.CloudServer;
+import net.bukkitlabs.bukkitlabscloud.core.share.object.CloudServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import org.jetbrains.annotations.NotNull;
 

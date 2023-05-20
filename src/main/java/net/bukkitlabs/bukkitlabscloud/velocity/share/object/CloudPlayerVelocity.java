@@ -1,9 +1,9 @@
-package net.bukkitlabs.bukkitlabscloud.velocity.share;
+package net.bukkitlabs.bukkitlabscloud.velocity.share.object;
 
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
-import net.bukkitlabs.bukkitlabscloud.core.share.CloudPlayer;
+import net.bukkitlabs.bukkitlabscloud.core.share.object.CloudPlayer;
 import net.bukkitlabs.bukkitlabscloud.velocity.BukkitLabsCloudProxyVelocity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,6 +33,11 @@ public class CloudPlayerVelocity extends CloudSourceVelocity implements CloudPla
     public @Nullable CloudServerVelocity getServer() {
         final ServerConnection server = player.getCurrentServer().orElse(null);
         return server == null ? null : new CloudServerVelocity(server.getServerInfo());
+    }
+
+    @Override
+    public boolean hasPermission(@NotNull String permission) {
+        return player.hasPermission(permission);
     }
 
     @Override
