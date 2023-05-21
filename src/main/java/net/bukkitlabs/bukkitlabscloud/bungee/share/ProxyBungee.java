@@ -2,6 +2,7 @@ package net.bukkitlabs.bukkitlabscloud.bungee.share;
 
 import net.bukkitlabs.bukkitlabscloud.bungee.BukkitLabsCloudProxyBungee;
 import net.bukkitlabs.bukkitlabscloud.bungee.share.action.CloudCommandBungee;
+import net.bukkitlabs.bukkitlabscloud.bungee.share.action.CloudLoggerBungee;
 import net.bukkitlabs.bukkitlabscloud.bungee.share.object.CloudPlayerBungee;
 import net.bukkitlabs.bukkitlabscloud.bungee.share.object.CloudServerBungee;
 import net.bukkitlabs.bukkitlabscloud.core.share.Proxy;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.net.InetSocketAddress;
 import java.util.List;
 
-public class ProxyBungee implements Proxy<CloudPlayerBungee, CloudServerBungee> {
+public class ProxyBungee implements Proxy<CloudPlayerBungee, CloudServerBungee, CloudLoggerBungee> {
 
     @Override
     public @NotNull List<CloudPlayerBungee> getAllPlayers() {
@@ -60,5 +61,10 @@ public class ProxyBungee implements Proxy<CloudPlayerBungee, CloudServerBungee> 
     @Override
     public void registerCommand(@NotNull CloudCommand cloudCommand, @NotNull String name, @NotNull String permission, @NotNull String... aliases) {
         new CloudCommandBungee(cloudCommand, name, permission, aliases);
+    }
+
+    @Override
+    public @NotNull CloudLoggerBungee getLogger() {
+        return new CloudLoggerBungee(BukkitLabsCloudProxyBungee.getInstance().getLogger());
     }
 }
