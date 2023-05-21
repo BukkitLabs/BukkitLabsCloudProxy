@@ -16,9 +16,18 @@ public class CloudLoggerBungee implements CloudLogger {
     @Override
     public void log(@NotNull Level level, @NotNull String message) {
         switch (level) {
-            case INFO -> this.logger.info(message);
-            case WARN -> this.logger.warning(message);
-            case ERROR -> this.logger.severe(message);
+            case INFO -> this.logger.log(java.util.logging.Level.INFO, message);
+            case WARN -> this.logger.log(java.util.logging.Level.WARNING, message);
+            case ERROR -> this.logger.log(java.util.logging.Level.SEVERE, message);
+        }
+    }
+
+    @Override
+    public void log(@NotNull Level level, @NotNull String message, @NotNull Exception exception) {
+        switch (level) {
+            case INFO -> this.logger.log(java.util.logging.Level.INFO, message, exception);
+            case WARN -> this.logger.log(java.util.logging.Level.WARNING, message, exception);
+            case ERROR -> this.logger.log(java.util.logging.Level.SEVERE, message, exception);
         }
     }
 }

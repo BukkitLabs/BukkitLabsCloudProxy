@@ -6,6 +6,8 @@ public interface CloudLogger {
 
     void log(@NotNull Level level, @NotNull String message);
 
+    void log(@NotNull Level level, @NotNull String message, @NotNull Exception exception);
+
     enum Level {
         INFO,
         WARN,

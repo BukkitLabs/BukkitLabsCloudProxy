@@ -20,4 +20,13 @@ public class CloudLoggerVelocity implements CloudLogger {
             case ERROR -> this.logger.error(message);
         }
     }
+
+    @Override
+    public void log(@NotNull Level level, @NotNull String message, @NotNull Exception exception) {
+        switch (level) {
+            case INFO -> this.logger.info(message, exception);
+            case WARN -> this.logger.warn(message, exception);
+            case ERROR -> this.logger.error(message, exception);
+        }
+    }
 }

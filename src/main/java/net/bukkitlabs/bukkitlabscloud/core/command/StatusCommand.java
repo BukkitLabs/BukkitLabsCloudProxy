@@ -6,8 +6,6 @@ import net.bukkitlabs.bukkitlabscloud.core.share.object.CloudPlayer;
 import net.bukkitlabs.bukkitlabscloud.core.share.object.CloudSource;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
-
 public class StatusCommand implements CloudCommand {
 
     private final BukkitLabsCloudProxyCore core;
@@ -27,10 +25,5 @@ public class StatusCommand implements CloudCommand {
             return;
         }
         player.sendMessage("&7Status: &cDisconnected");
-        try {
-            this.core.getClient().stopServer();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
     }
 }
