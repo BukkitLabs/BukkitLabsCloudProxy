@@ -27,6 +27,11 @@ public class CloudPlayerBungee extends CloudSourceBungee implements CloudPlayer<
     }
 
     @Override
+    public @NotNull String getIP() {
+        return player.getSocketAddress().toString();
+    }
+
+    @Override
     public @Nullable CloudServerBungee getServer() {
         return new CloudServerBungee(player.getServer().getInfo());
     }

@@ -1,5 +1,6 @@
 package net.bukkitlabs.bukkitlabscloud.bungee;
 
+import net.bukkitlabs.bukkitlabscloud.bungee.event.PlayerConnectListenerBungee;
 import net.bukkitlabs.bukkitlabscloud.bungee.share.ProxyBungee;
 import net.bukkitlabs.bukkitlabscloud.core.BukkitLabsCloudProxyCore;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -15,6 +16,8 @@ public final class BukkitLabsCloudProxyBungee extends Plugin {
         BukkitLabsCloudProxyBungee.setInstance(this);
         this.bukkitLabsCloudProxyCore = new BukkitLabsCloudProxyCore(new ProxyBungee());
         this.bukkitLabsCloudProxyCore.onEnable();
+
+        this.getProxy().getPluginManager().registerListener(this, new PlayerConnectListenerBungee(this.bukkitLabsCloudProxyCore));
     }
 
     @Override

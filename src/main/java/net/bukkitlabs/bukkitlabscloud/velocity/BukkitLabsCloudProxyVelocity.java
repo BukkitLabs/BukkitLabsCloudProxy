@@ -8,6 +8,7 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import net.bukkitlabs.bukkitlabscloud.core.BukkitLabsCloudProxyCore;
+import net.bukkitlabs.bukkitlabscloud.velocity.event.PlayerConnectListenerVelocity;
 import net.bukkitlabs.bukkitlabscloud.velocity.share.ProxyVelocity;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -42,6 +43,8 @@ public class BukkitLabsCloudProxyVelocity {
         setInstance(this);
         this.bukkitLabsCloudProxyCore = new BukkitLabsCloudProxyCore(new ProxyVelocity());
         this.bukkitLabsCloudProxyCore.onEnable();
+
+        this.getServer().getEventManager().register(this, new PlayerConnectListenerVelocity(this.bukkitLabsCloudProxyCore));
     }
 
     @Subscribe

@@ -13,6 +13,9 @@ public interface CloudPlayer<T extends CloudServer> extends CloudSource {
     @NotNull
     String getName();
 
+    @NotNull
+    String getIP();
+
     @Nullable
     T getServer();
 

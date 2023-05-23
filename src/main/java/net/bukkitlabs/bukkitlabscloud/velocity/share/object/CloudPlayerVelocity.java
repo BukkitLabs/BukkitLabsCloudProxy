@@ -30,6 +30,11 @@ public class CloudPlayerVelocity extends CloudSourceVelocity implements CloudPla
     }
 
     @Override
+    public @NotNull String getIP() {
+        return player.getRemoteAddress().getHostString();
+    }
+
+    @Override
     public @Nullable CloudServerVelocity getServer() {
         final ServerConnection server = player.getCurrentServer().orElse(null);
         return server == null ? null : new CloudServerVelocity(server.getServerInfo());
